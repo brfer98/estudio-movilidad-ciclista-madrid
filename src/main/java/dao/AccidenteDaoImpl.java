@@ -37,6 +37,7 @@ public class AccidenteDaoImpl implements AccidenteDao{
             return lineas.stream()
                     .skip(1)
                     .map(l -> crearAccidente(l, map))
+                    .filter(Objects::nonNull)
                     .toList();
 
         } catch (IOException e) {
@@ -45,15 +46,14 @@ public class AccidenteDaoImpl implements AccidenteDao{
         }
     }
 
-
     private Accidente crearAccidente(String linea, Map<String, Integer> map){
         String[] data = linea.split(";", -1);
         return Accidente.builder()
                 .numExpediente(extraerTexto(data, map, "num_expediente"))
-                .fecha(java.time.LocalDate.parse(extraerTexto(data, map, "fecha")))
-                .hora(java.time.LocalTime.parse(extraerTexto(data, map, "hora")))
+                .fecha(java.time.LocalDate.parse(extraerTexto(data, map, "fecha"), java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+                .hora(java.time.LocalTime.parse(extraerTexto(data, map, "hora"), java.time.format.DateTimeFormatter.ofPattern("H:mm:ss")))
                 .localizacion(extraerTexto(data, map, "localizacion"))
-                .numeroDireccion(extraerEntero(data, map, "numero"))
+                .numeroDireccion(extraerTexto(data, map, "numero"))
                 .codigoDistrito(extraerEntero(data, map, "cod_distrito"))
                 .distrito(extraerTexto(data, map, "distrito"))
                 .tipoAccidente(extraerTexto(data, map, "tipo_accidente"))
@@ -74,17 +74,18 @@ public class AccidenteDaoImpl implements AccidenteDao{
 
     private String extraerTexto(String[] data, Map<String, Integer> map, String columna){
         Integer indice = map.get(columna);
-        return data[indice];
+        if (indice != null && indice < data.length) {
+            return data[indice].trim();
+        }
+        return "";
     }
 
     private Integer extraerEntero(String[] data, Map<String, Integer> map, String columna) {
         String texto = extraerTexto(data, map, columna);
+        if (texto.isEmpty()) {
+            return null;
+        }
         return Integer.parseInt(texto);
     }
-
-
-
-
-
 
 }

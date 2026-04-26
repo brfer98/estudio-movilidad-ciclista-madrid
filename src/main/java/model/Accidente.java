@@ -1,15 +1,13 @@
 package model;
 
-import lombok.Builder;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Builder
-@Setter
+@Getter
+@ToString
 public class Accidente {
 
     private final String numExpediente;
@@ -18,7 +16,7 @@ public class Accidente {
     private final LocalTime hora; // RANGO HORARIO
 
     private final String localizacion; // LUGAR ACCIDENTE
-    private final Integer numeroDireccion;
+    private final String numeroDireccion;
     private final Integer codigoDistrito;
     private final String distrito; // DISTRITO
     private final String tipoAccidente; // TIPO ACCIDENTE
@@ -39,7 +37,7 @@ public class Accidente {
     private final String positivoAlcohol;
     private final Integer positivoDroga;
 
-    public Accidente(String numExpediente, LocalDate fecha, LocalTime hora, String localizacion, Integer numeroDireccion, Integer codigoDistrito, String distrito, String tipoAccidente, String estadoMeteorologico, String tipoVehiculo, String tipoPersona, String rangoEdad, String sexo, Integer codigoLesividad, String lesividad, Integer coordenadaXUtm, Integer coordenadaYUtm, String positivoAlcohol, Integer positivoDroga) {
+    public Accidente(String numExpediente, LocalDate fecha, LocalTime hora, String localizacion, String numeroDireccion, Integer codigoDistrito, String distrito, String tipoAccidente, String estadoMeteorologico, String tipoVehiculo, String tipoPersona, String rangoEdad, String sexo, Integer codigoLesividad, String lesividad, Integer coordenadaXUtm, Integer coordenadaYUtm, String positivoAlcohol, Integer positivoDroga) {
         this.numExpediente = numExpediente;
         this.fecha = fecha;
         this.hora = hora;
