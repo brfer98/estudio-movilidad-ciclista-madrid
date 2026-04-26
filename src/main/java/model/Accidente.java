@@ -1,11 +1,18 @@
 package model;
 
+import lombok.Builder;
+import lombok.Generated;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Builder
+@Setter
 public class Accidente {
 
-    private final String expediente;
+    private final String numExpediente;
 
     private final LocalDate fecha; // FECHA
     private final LocalTime hora; // RANGO HORARIO
@@ -29,24 +36,15 @@ public class Accidente {
     private final Integer coordenadaXUtm;
     private final Integer coordenadaYUtm;
 
-    private final Boolean positivoAlcohol;
+    private final String positivoAlcohol;
     private final Integer positivoDroga;
 
-    /******************/
-
-    private final String diaSemana;
-    private final Integer numero;
-    private final String numeroParte;
-    private final String estadoPavimento;
-    private final Integer numeroVictimas;
-
-    public Accidente(String expediente, LocalDate fecha, LocalTime hora, String localizacion, Integer numeroDireccion, Integer numero, Integer codigoDistrito, String distrito, String tipoAccidente, String estadoMeteorologico, String tipoVehiculo, String tipoPersona, String rangoEdad, String sexo, Integer codigoLesividad, String lesividad, Integer coordenadaXUtm, Integer coordenadaYUtm, Boolean positivoAlcohol, Integer positivoDroga, String diaSemana, String numeroParte, String estadoPavimento, Integer numeroVictimas) {
-        this.expediente = expediente;
+    public Accidente(String numExpediente, LocalDate fecha, LocalTime hora, String localizacion, Integer numeroDireccion, Integer codigoDistrito, String distrito, String tipoAccidente, String estadoMeteorologico, String tipoVehiculo, String tipoPersona, String rangoEdad, String sexo, Integer codigoLesividad, String lesividad, Integer coordenadaXUtm, Integer coordenadaYUtm, String positivoAlcohol, Integer positivoDroga) {
+        this.numExpediente = numExpediente;
         this.fecha = fecha;
         this.hora = hora;
         this.localizacion = localizacion;
         this.numeroDireccion = numeroDireccion;
-        this.numero = numero;
         this.codigoDistrito = codigoDistrito;
         this.distrito = distrito;
         this.tipoAccidente = tipoAccidente;
@@ -61,9 +59,5 @@ public class Accidente {
         this.coordenadaYUtm = coordenadaYUtm;
         this.positivoAlcohol = positivoAlcohol;
         this.positivoDroga = positivoDroga;
-        this.diaSemana = diaSemana;
-        this.numeroParte = numeroParte;
-        this.estadoPavimento = estadoPavimento;
-        this.numeroVictimas = numeroVictimas;
     }
 }
