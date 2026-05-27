@@ -11,11 +11,10 @@ import java.util.stream.Stream;
 
 public class AccidenteDaoImpl implements AccidenteDao{
 
-    private static final Path ARCHIVO = Path.of("data/300110-0-accidentes-bicicleta-csv.csv");
+    private static final Path ARCHIVO = Path.of("data/300110-1-accidentes-bicicleta-csv.csv");
 
     @Override
     public List<Accidente> obtenerTodosLosAccidentes() {
-
         List<Accidente> accidentes = new ArrayList<>();
 
         if (!Files.exists(ARCHIVO)){
@@ -24,7 +23,6 @@ public class AccidenteDaoImpl implements AccidenteDao{
 
         try {
             List<String> lineas = Files.readAllLines(ARCHIVO);
-
             // cabeceras
             String[] cabeceras = lineas.getFirst().split(";");
 
@@ -33,13 +31,11 @@ public class AccidenteDaoImpl implements AccidenteDao{
             for (int i = 0; i < cabeceras.length; i++) {
                 map.put(cabeceras[i], i);
             }
-
             return lineas.stream()
                     .skip(1)
                     .map(l -> crearAccidente(l, map))
                     .filter(Objects::nonNull)
                     .toList();
-
         } catch (IOException e) {
             System.err.println("Error en la lectura del archivo");
             return List.of();

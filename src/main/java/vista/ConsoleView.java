@@ -13,6 +13,9 @@ public class ConsoleView {
     }
 
     public void iniciar(){
-        System.out.println(accidenteServiceImpl.obtenerAccidentesParaAprendizaje());
+        accidenteServiceImpl.analizarGravedadPorDistrito();
+        accidenteServiceImpl.compararDistritoConMediaDeCiudad();
+        accidenteServiceImpl.hayAccidentesGraves();
+        accidenteServiceImpl.callesConMasAccidentes();
     }
 }

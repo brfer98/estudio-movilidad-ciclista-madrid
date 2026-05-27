@@ -6,7 +6,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public interface AccidenteService {
-    List<Accidente> obtenerTodosAccidentes();
-    List<Accidente> obtenerAccidentesParaAprendizaje();
+    List<Accidente> obtenerTodosAccidentesDeConductores();
+
+    void analizarGravedadPorDistrito();
+    void compararDistritoConMediaDeCiudad();
+
+    void hayAccidentesGraves();
+    void callesConMasAccidentes();
 
 }
